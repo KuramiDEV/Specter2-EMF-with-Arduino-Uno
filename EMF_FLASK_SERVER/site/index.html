@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>EMF Controller</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>EMF Níveis</h1>
+
+    <div class="button-grid">
+      <button class="btn gray" onclick="setLevel(0)">0</button>
+      <button class="btn green-light" onclick="setLevel(1)">1</button>
+      <button class="btn green" onclick="setLevel(2)">2</button>
+      <button class="btn yellow" onclick="setLevel(3)">3</button>
+      <button class="btn orange" onclick="setLevel(4)">4</button>
+      <button class="btn red" onclick="setLevel(5)">5</button>
+    </div>
+
+    <button class="btn gray" onclick="usePot()">Usar Potenciômetro</button>
+  </div>
+
+  <script>
+    function setLevel(level) {
+      fetch('/set_level', {
+        method: 'POST',
+        body: new URLSearchParams({ level: level })
+      });
+    }
+
+    function usePot() {
+      fetch('/use_pot', {
+        method: 'POST'
+      });
+    }
+  </script>
+</body>
+</html>
